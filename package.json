@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "lodash": "~2.4.0",
+    "express": "~3.4.6",
+    "mongoskin": "~0.6.1"
+  }
+}
