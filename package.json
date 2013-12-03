@@ -2,6 +2,8 @@
   "dependencies": {
     "lodash": "~2.4.0",
     "express": "~3.4.6",
-    "mongoskin": "~0.6.1"
+    "mongoskin": "~0.6.1",
+    "passport-local": "~0.1.6",
+    "passport": "~0.1.17"
   }
 }
