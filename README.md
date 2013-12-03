@@ -18,6 +18,7 @@ You have a bunch or URLs that you can work with:
 
  eg: /api/cars ->list of cars
  **special parameters**:
+
  * * _max=10 : Maximum # of elements to return
  * * _start=20: Used together with _max, allows to do pagination of lists
 
