@@ -1,6 +1,9 @@
 var config = {
     db: 'test',
-    frontend: 'frontend'
+    frontend: 'frontend',
+    // If set to true, all records will have a creator field when they are
+    // created by a user with a session
+    save_creator: true
 };
 
 var express = require('express'),
@@ -74,6 +77,10 @@ app.get('/api/:collectionName', function(req, res) {
 });
 
 app.post('/api/:collectionName', function(req, res) {
+    var document = req.body;
+    if (config.save_creator && req.session.user._id) {
+        document.creator_id = req.session.user._id;
+    }
     req.collection.insert(req.body, {}, function(e, results){
         if (e) return next(e);
         res.send(results);
