@@ -17,6 +17,7 @@ You have a bunch or URLs that you can work with:
  collection.
 
  eg: /api/cars ->list of cars
+
  **special parameters**:
 
  * * _max=10 : Maximum # of elements to return
