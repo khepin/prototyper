@@ -66,7 +66,8 @@ app.get('/api/:collectionName', function(req, res) {
             match[key] = req.query[key];
         }
     });
-    if (req.query._id) {
+    if (req.query.id) {
+        delete match.id;
         match._id = req.collection.id(req.query._id);
     }
 
@@ -78,7 +79,7 @@ app.get('/api/:collectionName', function(req, res) {
 
 app.post('/api/:collectionName', function(req, res) {
     var document = req.body;
-    if (config.save_creator && req.session.user._id) {
+    if (config.save_creator && req.session.user && req.session.user._id) {
         document.creator_id = req.session.user._id;
     }
     req.collection.insert(req.body, {}, function(e, results){
