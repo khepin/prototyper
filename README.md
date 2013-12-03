@@ -46,7 +46,7 @@ doing a POST on /login with
         "username": "bob"
     }
 
-will log you in as "bob".
+will log you in as "bob". (Note that the user must exist in the `users` collection.)
 
 A POST on /logout will log you out.
 
