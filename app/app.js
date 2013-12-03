@@ -57,8 +57,10 @@ app.post('/logout', function(req, res){
 
 app.get('/api/:collectionName', function(req, res) {
     var query = {};
-    query.limit = req.query['_max'];
-    query.skip = req.query['_start'];
+    query.limit = req.query._max;
+    query.skip = req.query._start;
+    query.sort = [[req.query._sort, req.query._order || 'asc']];
+
     var match = {};
     var keys = _.keys(req.query);
     _.each(keys, function(key){
@@ -82,6 +84,9 @@ app.post('/api/:collectionName', function(req, res) {
     if (config.save_creator && req.session.user && req.session.user._id) {
         document.creator_id = req.session.user._id;
     }
+    document.created_at = Date.now();
+
+
     req.collection.insert(req.body, {}, function(e, results){
         if (e) return next(e);
         res.send(results);
@@ -96,9 +101,11 @@ app.get('/api/:collectionName/:id', function(req, res) {
 });
 
 app.put('/api/:collectionName/:id', function(req, res) {
-    var object = req.body;
-    delete object._id;
-    req.collection.update({_id: req.collection.id(req.params.id)}, {$set:req.body}, {safe:true, multi:false}, function(e, result){
+    var document = req.body;
+    delete document._id;
+    document.updated_at = Date.now();
+
+    req.collection.update({_id: req.collection.id(req.params.id)}, {$set:document}, {safe:true, multi:false}, function(e, result){
         if (e) return next(e);
         req.collection.findOne({_id: req.collection.id(req.params.id)}, function(e, result){
             if (e) return next(e);

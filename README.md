@@ -22,6 +22,8 @@ You have a bunch or URLs that you can work with:
 
  * * _max=10 : Maximum # of elements to return
  * * _start=20: Used together with _max, allows to do pagination of lists
+ * * _sort=name: Sort by name
+ * * _order=(asc|desc): The order of the sort
 
  Filtering works by sending url parameter such as ?username=bob
 
