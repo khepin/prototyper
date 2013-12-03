@@ -1,3 +1,8 @@
+var config = {
+    db: 'test',
+    frontend: 'frontend'
+};
+
 var express = require('express'),
     mongoskin = require('mongoskin');
     _ = require('lodash');
@@ -5,10 +10,10 @@ var express = require('express'),
 var app = express();
 
 app.use(express.bodyParser());
-app.use(express.static('frontend'));
+app.use(express.static(config.frontend));
 app.use(express.cookieParser('keyboard cat'));
 app.use(express.session());
-var db = mongoskin.db('localhost:27017/test', {safe:true});
+var db = mongoskin.db('localhost:27017/'+config.db, {safe:true});
 
 app.param('collectionName', function(req, res, next, collectionName){
     req.collection = db.collection(collectionName);
