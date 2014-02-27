@@ -5,5 +5,8 @@
     "mongoskin": "~0.6.1",
     "passport-local": "~0.1.6",
     "passport": "~0.1.17"
+  },
+  "scripts": {
+  	"start": "npm install; pm2 delete bjpollu; pm2 start app/app.js -i max -n bjpollu"
   }
 }
