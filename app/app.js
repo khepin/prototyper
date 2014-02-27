@@ -25,7 +25,7 @@ app.param('collectionName', function(req, res, next, collectionName){
 });
 
 app.get('/', function(req, res) {
-    res.send('please select a collection, e.g., /api/messages');
+    res.send('please select a collection, e.g., /api/messages updated!');
 });
 
 Auth.addAuthentication(app, db);
